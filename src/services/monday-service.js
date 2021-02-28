@@ -85,7 +85,6 @@ class MondayService {
       }
       `;
 
-
       const string_query = `mutation change_simple_column_value($boardId: Int!, $itemId: Int!, $columnId: String!, $value: String!) {
         change_simple_column_value(board_id: $boardId, item_id: $itemId, column_id: $columnId, value: $value) {
           id
@@ -96,37 +95,27 @@ class MondayService {
       if(targetColType == "dropdown"){
       var  targetValueJson = JSON.stringify({"labels": [targetValue]});
       const variables = { boardId: boardId, columnId: columnId , itemId: itemId, value: targetValueJson};
-      console.log(variables);
       const response = await mondayClient.api(json_query, { variables });
-      console.log(response);
       return response;
       }
       else if(targetColType == "long-text"){
         const variables = { boardId: boardId, columnId: columnId , itemId: itemId, value: targetValue};
-        console.log(variables);
         const response = await mondayClient.api(string_query, { variables });
-        console.log(response);
         return response;
       }
       else if(targetColType == "text"){
         const variables = { boardId: boardId, columnId: columnId , itemId: itemId, value: targetValue};
-        console.log(variables);
         const response = await mondayClient.api(string_query, { variables });
-        console.log(response);
         return response;
       }
       else if(targetColType == "numeric"){
         const variables = { boardId: boardId, columnId: columnId , itemId: itemId, value: targetValue};
-        console.log(variables);
         const response = await mondayClient.api(string_query, { variables });
-        console.log(response);
         return response;
       }
       else {
         return "";
       }
-
-
     } catch (err) {
       console.log(err);
     }
